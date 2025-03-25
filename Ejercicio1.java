@@ -2,10 +2,40 @@
 import java.util.Scanner;
 
 
-class Persona
-{
-    String nombre;
-    int edad;
+class Persona {
+    private  String nombre;
+    private int edad;
+
+    //constructor: inicializa atributos y crea un objeto persona
+    public Persona (String nombre, int edad)
+    {
+        this.nombre = nombre; //this.nombre se refiere al atributo de la clase y nombre(sin this.) es el parametro recibido en el constructor
+        this.edad = edad;
+    }
+    //Getters (accesores)
+
+    public String getNombre()
+    {
+        return nombre;
+    }
+
+    public int getEdad()
+    {
+        return edad;
+    }
+
+    //Setters (modificadores)
+
+    public void setNombre(String nombre)
+    {
+        this.nombre = nombre;
+    }
+    
+    public void setEdad(int edad)
+    {
+        this.edad = edad;
+    }
+
 }
 
 public class Ejercicio1
@@ -17,41 +47,69 @@ public class Ejercicio1
 
         for(i=0;i<personas.length;i++)
         {
-            personas[i] = new Persona();
+            personas[i] = new Persona("", 0);
 
         }
 
     }
+
     public static void cargarPersona(Persona[] personas)
     {
         Scanner scanner = new Scanner(System.in);
-        int i=0, op=0;
+        int i=0, op=0, edad=0;
+        String nombre;
         
         for(i=0;i<personas.length;i++)
         {
-            if(personas[i].edad == 0)
+            if(personas[i] == null || personas[i].getEdad() == 0)
             {
                 System.out.printf("Ingrese los datos de la persona n°%d: \n", i+1);
                 System.out.println("NOMBRE:");
-                personas[i].nombre = scanner.nextLine();
-                System.out.println("EDAD:");
-                personas[i].edad = scanner.nextInt();
-                    while(personas[i].edad < 1)
-                    {
-                        System.out.println("ERROR. La edad deber ser mayor a 0, vuelva a intentarlo.");
-                        personas[i].edad = scanner.nextInt();
+                nombre = scanner.nextLine();
 
-                    }
+                do
+                {
+                    System.out.println("EDAD:");
+                        while(!scanner.hasNextInt())
+                        {
+                            System.out.println("ERROR. No ingreso un numero valido, vuelva a intentarlo.");
+                            scanner.next();
+                        }
+                        edad = scanner.nextInt();
+                        scanner.nextLine();
+
+                        if(edad<1)
+                        {
+                            System.out.println("ERROR. La edad debe ser mayor que 0, vuelva a intentarlo:");
+                        }
+
+                }while(edad<1);
+
+                personas[i] = new Persona(nombre, edad);
+
+                    
                 if( i < personas.length-1)
                 {
-                    System.out.println("¿Desea seguir cargando? 1/SI 2/NO");    
-                    op = scanner.nextInt();
-
-                        while(op<1 || op>2)
+                    
+                    do
+                    {
+                        System.out.println("¿Desea seguir cargando? 1/SI 2/NO");    
+                        while(!scanner.hasNextInt())
                         {
-                            System.out.println("ERROR. Esa opcion no existe, vuelva a intentarlo. \n");
-                            op = scanner.nextInt();
+                            System.out.println("ERROR. No ingresó un numero invalido, vuelva a intentarlo. \n");
+                            scanner.next();
                         }
+                        op = scanner.nextInt();
+                        scanner.nextLine();
+                        if(op!=1 && op!=2)
+                        {
+                            System.out.println("ERROR. Esa opcion no existe, vuelva a intentarlo:");
+                        }
+
+                    }while(op!=1 && op!=2);
+
+                        
+                        
                     if(op == 2)
                     {
                         break;
@@ -75,9 +133,9 @@ public class Ejercicio1
         for(i=0;i<personas.length;i++)
         {
 
-            if(personas[i].edad != 0)
+            if(personas[i].getEdad() != 0)
             {
-                System.out.printf("Nombre: %s -- edad: %d \n", personas[i].nombre, personas[i].edad);
+                System.out.printf("Nombre: %s -- edad: %d \n", personas[i].getNombre(), personas[i].getEdad());
             }
 
         }
@@ -89,29 +147,47 @@ public class Ejercicio1
         Persona[] personas = new Persona[3];
         inicializarDatos(personas);
         
-        int op=0, bandera=0;
+        int op=0;
+        boolean bandera = false;
 
         do
         {
-            System.out.println("0. Para salir del menu.");
-            System.out.println("1. Para cargar los datos.");
-            System.out.println("2. Para ver los datos.");
-            op = scanner.nextInt();
-                while(op<0 || op>2)
+            System.out.println("\nMENÚ:");
+            System.out.println("0. Salir");
+            System.out.println("1. Cargar los datos");
+            System.out.println("2. Ver los datos");
+            System.out.println("Seleccione una opción: ");
+
+            do
+            {
+                while(!scanner.hasNextInt())
                 {
-                    System.out.println("ERROR. Esa opcion no existe, vuelva a intentarlo:");
-                    op = scanner.nextInt();
+                    System.out.println("ERROR. No ingreso un numero valido, vuelva a intentarlo:");
+                    scanner.next();
+                    
                 }
+                
+                op = scanner.nextInt();
+                scanner.nextLine();
+
+                if(op<0 || op>2)
+                {
+                    System.out.println("ERROR. Esa opción no existe, vuelva a intentarlo:");
+                }
+
+            }while(op<0 || op>2);
+            
+                
             
             switch (op) {
                     case 1:
 
                         cargarPersona(personas);
-                        bandera = 1;
+                        bandera = true;
                     break;
                     case 2:
 
-                        if(bandera==1)
+                        if(bandera)
                         {
                            
                             mostrarDatos(personas);

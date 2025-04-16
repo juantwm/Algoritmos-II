@@ -1,33 +1,91 @@
 package ejercicioAyEDII1;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        
-        Person listado[] = new Person[2];
-        Person.inicializarDatos(listado);
+    
+    Scanner scanner = new Scanner(System.in);
+    Person[] persona= new Person[2];
+    
+        int op=0;
+        boolean bandera = false;
 
-        int i=0;
+        do
+        {
+            System.out.println("\nMENÚ:");
+            System.out.println("0. Salir");
+            System.out.println("1. Cargar tarea");
+            System.out.println("2. Modifidicar tarea");
+            System.out.println("3. Para ver las tareas");
+            System.out.println("Seleccione una opción: ");
 
-        listado[0].id= 1;
-        listado[0].nombre= "Gaston";
-        listado[0].descripcion = "Resumen AyEDII";
-        listado[0].estado= "Pendiente";
-        listado[1].id= 2;
-        listado[1].nombre= "Santiago";
-        listado[1].descripcion = "Preparación del final de fisica";
-        listado[1].estado= "Finalizada";
+            do
+            {
+                while(!scanner.hasNextInt())
+                {
+                    System.out.println("ERROR. No ingreso un numero valido, vuelva a intentarlo:");
+                    scanner.nextInt();
+                    
+                }
+                
+                op = scanner.nextInt();
+                scanner.nextLine();
 
-        for(i=0;i<2;i++)
-        {   
+                if(op<0 || op>3)
+                {
+                    System.out.println("ERROR. Esa opción no existe, vuelva a intentarlo:");
+                }
 
-            System.out.println("*******************************************************");
-            System.out.printf("Nombre: %s \n", listado[i].nombre);
-            System.out.printf("Descripción: %s \n", listado[i].descripcion);
-            System.out.printf("Estado: %s \n", listado[i].estado);
-            System.out.printf("ID: %d \n", listado[i].id);
+            }while(op<0 || op>3);
             
+                
+            
+            switch (op) {
+                    case 1:
+
+                        Person.cargarTareas(persona);
+                        
+                        bandera = true;
+                    break;
+                    case 2:
+
+                        if(bandera)
+                        {
+                           
+                            Person.modificarTarea(persona);
+                           
+                        }
+                        else
+                        {
+
+                            System.out.println("ERROR. Para continuar debe cargar los datos.");
+                        }
+
+                    
+                    break;
+                    case 3:
+
+                        if(bandera)
+                        {
+                           
+                            Person.verTareas(persona);
+                           
+                        }
+                        else
+                        {
+
+                            System.out.println("ERROR. Para continuar debe cargar los datos.");
+                        }
+
+                    
+                    break;
+            
+                
+            }
 
 
-        }
+        }while(op!=0);
+        scanner.close();
+       
     }
-}
+ }

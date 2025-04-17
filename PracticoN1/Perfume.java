@@ -209,7 +209,7 @@ public class Perfume {
         }
         else
         {
-            System.out.println("ERROR. No existen perfumes para eliminar porque ya fueron eliminados o no han sido cargados.");
+            System.out.println("ERROR. No existen perfumes para ver porque ya fueron eliminados o no han sido cargados.");
 
         }
         
@@ -360,7 +360,7 @@ public class Perfume {
         }
         else
         {
-            System.out.println("ERROR. No existen perfumes para eliminar porque ya fueron eliminados o no han sido cargados.");
+            System.out.println("ERROR. No existen perfumes para modificar porque ya fueron eliminados o no han sido cargados.");
         }
         
     }

@@ -29,7 +29,7 @@ public class Main {
 
 
                 encontrado = tabla.buscar(id);
-                while(encontrado == 1|| id.length()<5 || id.length()>10)
+                while(encontrado != -1|| id.length()<5 || id.length()>10)
                 {
                     System.out.println("ERROR. Ese ID ya existe o el ID debe tener entre 5-10 caracteres, vuelva a intentarlo:");
                     id = input.nextLine();
@@ -99,11 +99,14 @@ public class Main {
         TablaDispersion tabla = new TablaDispersion();
 
         do {
-            
-            System.out.println("0. Para salir del menu.");
-            System.out.println("1. Para agregar una tarea.");
-            System.out.println("2. Para eliminar una tarea.");
-            System.out.println("3. Ver tareas.");
+            System.out.println("-----MENU-----");
+            System.out.println("0). Para salir del menu.");
+            System.out.println("1). Para agregar una tarea.");
+            System.out.println("2). Para eliminar una tarea.");
+            System.out.println("3). Ver tareas.");
+            System.out.println("4). Dar de alta una tarea eliminada.");
+            System.out.println("5). Modificar una tarea.");
+
         
             while(!scanner.hasNextInt())
             {
@@ -113,7 +116,7 @@ public class Main {
             }
             op = scanner.nextInt();
 
-            while(op<0 || op>3)
+            while(op<0 || op>5)
             {
                 System.out.println("ERROR. Esa opcion no existe. Vuelva a intentarlo: ");
                 op = scanner.nextInt();
@@ -149,6 +152,31 @@ public class Main {
                         System.out.println("\n---LISTA DE TAREAS---");
                         tabla.verDatos();
                         System.out.println("----------------\n");
+                    }
+                    else
+                    {
+                            System.out.println("ERROR. Para continuar debe agregar al menos una tarea:");
+                    }
+
+                break;
+                case 4:
+
+                    if(bandera == true)
+                    {
+                        tabla.darAlta(scanner);
+                    }
+                    else
+                    {
+                            System.out.println("ERROR. Para continuar debe agregar al menos una tarea:");
+                    }
+
+                break;
+
+                case 5:
+
+                    if(bandera == true)
+                    {
+                        tabla.modificarTarea(scanner);
                     }
                     else
                     {

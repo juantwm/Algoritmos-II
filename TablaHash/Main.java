@@ -8,7 +8,7 @@ public class Main {
     {
         
         String nombre, descripcion, id;
-        int estado=0, op=0, i=0, bandera = 1, encontrado=0;;
+        int estado=0, op=0, i=0, bandera = 1, encontrado=0;
         boolean esAlta = false;
        
 
@@ -52,7 +52,7 @@ public class Main {
                 }
                 input.nextLine();
 
-                esAlta = true;
+                
 
                 Tarea instanciaTarea = new Tarea(nombre, descripcion, estado, esAlta, id);
                 esAlta = tabla.insertar(instanciaTarea);
@@ -80,6 +80,7 @@ public class Main {
                 if(op==2)
                 {
                     bandera=2;
+                    break;
                 }
                 
             }

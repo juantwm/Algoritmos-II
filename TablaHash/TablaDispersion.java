@@ -14,12 +14,12 @@ public class TablaDispersion {
     public TablaDispersion()
     {
         tabla = new Tarea[m];
+        numElementos = 0;
+        factorCarga = 0.0;
         int i=0;
         for(i=0;i<m;i++)
         {
             tabla[i] = null;
-            numElementos = 0;
-            factorCarga = 0.0;
         }
     }
     
@@ -182,6 +182,7 @@ public class TablaDispersion {
         }
         
    }
+
 
    public int contarValidos()
    {

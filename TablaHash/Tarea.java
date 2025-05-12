@@ -1,7 +1,4 @@
 package TablaHash;
-
-
-
 public class Tarea {
 
     private String nombre;
@@ -62,7 +59,7 @@ public class Tarea {
         this.id=id;
     }
 
-   
-    }
+
+}
 
 

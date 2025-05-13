@@ -59,7 +59,25 @@ public class Tarea {
         this.id=id;
     }
 
+     @Override
+    public String toString() {
+        return "Tarea [" +
+               "ID='" + id + '\'' +
+               ", Nombre='" + nombre + '\'' +
+               ", Descripción='" + descripcion + '\'' +
+               ", Estado=" + estadoToString() +
+               ", esAlta=" + esAlta +
+               ']';
+    }
 
+    private String estadoToString() {
+        switch (estado) {
+            case 1: return "Pendiente";
+            case 2: return "En Progreso";
+            case 3: return "Finalizada";
+            default: return "Desconocido";
+        }
+    }
 }
 
 

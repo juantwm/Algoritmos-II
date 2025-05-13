@@ -8,13 +8,13 @@ public class Main {
     {
         
         String nombre, descripcion, id;
-        int estado=0, op=0, i=0, bandera = 1, encontrado=0;
+        int estado=0, op=0, i=0, bandera = 0, encontrado=0;
         boolean esAlta = false;
        
 
         for(i=0;i<101;i++)
         {
-            if(bandera == 1)
+            if(bandera == 0)
             {
                 
                 System.out.println("Tarea:");
@@ -53,6 +53,7 @@ public class Main {
                 input.nextLine();
 
                 
+                esAlta = true;
 
                 Tarea instanciaTarea = new Tarea(nombre, descripcion, estado, esAlta, id);
                 esAlta = tabla.insertar(instanciaTarea);
@@ -79,7 +80,7 @@ public class Main {
                 
                 if(op==2)
                 {
-                    bandera=2;
+                    bandera=1;
                     break;
                 }
                 

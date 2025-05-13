@@ -183,6 +183,29 @@ public class TablaDispersion {
         
    }
 
+   
+    /*  public void verDatos()
+    {
+    if (contarValidos() >= 1)
+    {
+        for (int i = 0; i < 101; i++)
+        {
+            if (tabla[i] != null && tabla[i].getEsAlta())
+            {
+                System.out.println("POSICION EN LA TABLA: " + i);
+                System.out.println(tabla[i]); // Usa el toString() automáticamente
+                System.out.println("------------------------------");
+            }
+        }
+    }
+    else
+    {
+        System.out.println("ERROR. Las tareas fueron eliminadas o no han sido cargadas.");
+    }
+}
+
+
+    */
 
    public int contarValidos()
    {
